@@ -106,7 +106,7 @@ export default function SmallCentered() {
             </Stack>
           <Text fontSize="13px" mt={5} align="center" justifyItems={'center'}>Copyright © 2023 - Fox Group International</Text>
           <Stack direction={'row'} spacing={10} mt={5}>
-            <SocialButton _hover={{color: '#E186E9'}} label={'Instagram'} href={'https://www.instagram.com/foxgroup.international'}>
+            <SocialButton label={'Instagram'} href={'https://www.instagram.com/foxgroup.international'}>
               <FaInstagram />
             </SocialButton>
             <SocialButton label={'Facebook'} href={'https://www.facebook.com/Fox-Group-241120733437193'}>

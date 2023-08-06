@@ -1,3 +1,4 @@
+'use client'
 import HeroSection from "../components/HeroSection"
 import Form from "../components/Form"
 import Stats from "../components/Stats"
