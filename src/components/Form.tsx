@@ -84,7 +84,7 @@ export default function Form() {
 
   return (
     <>
-      <Box as="form" onClick={handleSubmit} pb={10}>
+      <Box pb={10}>
         <WrapItem justifyContent="center" alignItems="center" padding="20px">
           <Center>
             <Flex
