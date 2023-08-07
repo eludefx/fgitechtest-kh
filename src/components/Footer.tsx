@@ -13,6 +13,7 @@ import { FaInstagram, FaFacebook, FaLinkedin } from "react-icons/fa";
 import { ReactNode } from "react";
 import { Image } from "@chakra-ui/image";
 
+<<<<<<< HEAD
 const Example = () => (
   <Image
     src="https://foxgroup.international/_next/image?url=%2Fimages%2Fbrand%2Ffox-group-logo-white.svg&w=256&q=75"
@@ -21,6 +22,8 @@ const Example = () => (
     width="100%"
   />
 );
+=======
+>>>>>>> 2fe92b7238b1fbb4519453d80a8b1b611e68fc28
 
 const SocialButton = ({
   children,
@@ -55,6 +58,7 @@ const SocialButton = ({
 };
 
 export default function SmallCentered() {
+  const logoImg = `/images/fox-group-logo${useColorModeValue("-white", "")}.svg`;
   return (
     <Box
       bg={useColorModeValue("#000", "#fff")}
@@ -65,6 +69,7 @@ export default function SmallCentered() {
         maxW={"6xl"}
         py={4}
         spacing={4}
+<<<<<<< HEAD
         justify={"center"}
         align={"center"}
       >
@@ -81,6 +86,13 @@ export default function SmallCentered() {
             href={"https://foxgroup.international/"}
             _hover={{ color: "#E186E9" }}
           >
+=======
+        justify={'center'}
+        align={'center'}>
+        <Image src={logoImg} w={'30%'} mt={4} mb={4} alt="Fox Group International"/>
+        <Stack direction={'row'} spacing={6}>
+          <Box as="a" href={'https://foxgroup.international/'} _hover={{color: '#E186E9' }}>
+>>>>>>> 2fe92b7238b1fbb4519453d80a8b1b611e68fc28
             Home
           </Box>
           <Box

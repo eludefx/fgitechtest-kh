@@ -14,73 +14,98 @@ import {
   Input,
   Button,
   InputLeftElement,
+  useToast,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
-export default function Form() {
+const Form = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
 
-  const isLettersNames = (text: string) => /^[A-Za-z]+$/.test(text);
-  const min_message_length = 10;
+  const [emailAddressError, setEmailAddressError] = useState(false);
 
-  const handleFirstNameChange = (e: { target: { value: any } }) => {
+  const isLettersNames = (text: string) => /^[A-Za-z]+$/.test(text);
+
+  const isEmailValid = (email: string) => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailRegex.test(email);
+  };
+
+  const isPhoneNumberValid = (phoneNumber: string) => {
+    const phoneNumberRegex = /^\d{11}$/;
+    return phoneNumberRegex.test(phoneNumber);
+  };
+
+  const handleFirstNameChange = (e: { target: { value: any; }; }) => {
     const value = e.target.value;
     if (isLettersNames(value) || value === "") setFirstName(value);
   };
 
-  const handleLastNameChange = (e: { target: { value: any } }) => {
+  const handleLastNameChange = (e: { target: { value: any; }; }) => {
     const value = e.target.value;
     if (isLettersNames(value) || value === "") setLastName(value);
   };
 
-  const handleEmailAddressChange = (e: { target: { value: any } }) => {
-    setEmailAddress(e.target.value);
+  const handleEmailAddressChange = (e: { target: { value: any; }; }) => {
+    const value = e.target.value;
+    setEmailAddress(value);
+    setEmailAddressError(!isEmailValid(value));
   };
 
-  const handlePhoneNumberChange = (e: { target: { value: any } }) => {
-    setPhoneNumber(e.target.value);
+  const handlePhoneNumberChange = (e: { target: { value: any; }; }) => {
+    const value = e.target.value;
+    setPhoneNumber(value);
   };
 
-  const handleMessageChange = (e: { target: { value: any } }) => {
+  const handleMessageChange = (e: { target: { value: SetStateAction<string>; }; }) => {
     setMessage(e.target.value);
   };
 
+  const toast = useToast();
+
   const isFirstNameError = firstName === "";
   const isLastNameError = lastName === "";
-  const isEmailAddressError = emailAddress === "";
-  const isPhoneNumberError = phoneNumber === "";
+  const isEmailAddressError = emailAddress === "" || emailAddressError;
+  const isPhoneNumberError = phoneNumber === "" || !isPhoneNumberValid(phoneNumber);
   const isMessageError = message === "" || message.length < 10;
 
-  const handleSubmit = (event: { preventDefault: () => void }) => {
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
+
+    const data = {
+      firstName: firstName,
+      lastName: lastName,
+      emailAddress: emailAddress,
+      phoneNumber: phoneNumber,
+      message: message,
+    };
+
+    const isEmailFormatValid = isEmailValid(emailAddress);
 
     if (
       isFirstNameError ||
       isLastNameError ||
       isEmailAddressError ||
+      !isEmailFormatValid ||
       isPhoneNumberError ||
       isMessageError
     )
       return;
 
     console.log("Form submitted successfully!");
-    console.log(
-      "first name: ",
-      firstName,
-      "last name: ",
-      lastName,
-      "email address: ",
-      emailAddress,
-      "phone number: ",
-      phoneNumber,
-      "message: ",
-      message
-    );
+    toast({
+      title: 'Message Received',
+      description: "Please see the console for more details.",
+      status: 'success',
+      duration: 3500,
+      isClosable: true,
+    })
+    console.log(data);
   };
+
 
   return (
     <>
@@ -107,7 +132,7 @@ export default function Form() {
                   flex="1"
                   mr="4"
                 >
-                  <FormLabel>First Name</FormLabel>
+                  <FormLabel color={"#000"}>First Name</FormLabel>
                   <Input
                     type="text"
                     value={firstName}
@@ -165,13 +190,13 @@ export default function Form() {
                     focusBorderColor="#eaadf0"
                   />
                 </InputGroup>
-                {!isEmailAddressError ? (
-                  <FormHelperText></FormHelperText>
-                ) : (
+                {isEmailAddressError ? (
                   <FormHelperText color="red">
-                    Email address is required.
+                    {emailAddress === ""
+                      ? "Email address is required."
+                      : "Invalid email address format."}
                   </FormHelperText>
-                )}
+                ) : null}
               </FormControl>
               <FormControl
                 isRequired
@@ -194,13 +219,13 @@ export default function Form() {
                     focusBorderColor="#eaadf0"
                   />
                 </InputGroup>
-                {!isPhoneNumberError ? (
-                  <FormHelperText></FormHelperText>
-                ) : (
-                  <FormHelperText color="red">
-                    Phone number is required.
-                  </FormHelperText>
-                )}
+                {isPhoneNumberError ? (
+          <FormHelperText color="red">
+            {phoneNumber === ""
+              ? "Phone number is required."
+              : "Invalid phone number format (11 digits)."}
+          </FormHelperText>
+        ) : null}
               </FormControl>
               <FormControl
                 isRequired
@@ -248,13 +273,12 @@ export default function Form() {
               >
                 Submit
               </Button>
-              {/* 
-            <Button rightIcon={<ArrowForwardIcon />} isLoading loadingText='Submitting' variant='outline' mt="4" >Submit</Button>
-            */}
             </Flex>
           </Center>
         </WrapItem>
       </Box>
     </>
   );
-}
+};
+
+export default Form;

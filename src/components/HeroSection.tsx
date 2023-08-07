@@ -1,6 +1,10 @@
 "use client";
 
+<<<<<<< HEAD
 import { Box, Heading, Container, Text, Stack } from "@chakra-ui/react";
+=======
+import { Box, Heading, Container, Text, Stack, useColorModeValue, } from "@chakra-ui/react";
+>>>>>>> 2fe92b7238b1fbb4519453d80a8b1b611e68fc28
 
 export default function HeroSection() {
   return (
@@ -22,7 +26,14 @@ export default function HeroSection() {
           >
             Contact Us
           </Heading>
+<<<<<<< HEAD
           <Text color={"#000"} fontSize={{ base: "17px" }} fontWeight={"600"}>
+=======
+          <Text 
+            color={useColorModeValue('#000', '#fff')}
+            fontSize={{ base: "17px" }}
+            fontWeight={600}>
+>>>>>>> 2fe92b7238b1fbb4519453d80a8b1b611e68fc28
             Enter your details below and send us a message.
           </Text>
         </Stack>

@@ -8,6 +8,10 @@ import {
   Container,
   Stack,
 } from "@chakra-ui/react";
+<<<<<<< HEAD
+=======
+import ThemeToggle from "./ThemeToggle";
+>>>>>>> 2fe92b7238b1fbb4519453d80a8b1b611e68fc28
 
 interface Props {
   children: React.ReactNode;
@@ -34,11 +38,16 @@ const NavLink = (props: Props) => {
 };
 
 export default function Nav() {
+<<<<<<< HEAD
+=======
+  const logoImg = `/images/fox-group-logo${useColorModeValue("", "-white")}.svg`;
+>>>>>>> 2fe92b7238b1fbb4519453d80a8b1b611e68fc28
   return (
     <>
       <Container
         as={Stack}
         maxW={"6xl"}
+<<<<<<< HEAD
         py={10}
         justify={"center"}
         align={"center"}
@@ -62,3 +71,24 @@ export default function Nav() {
     </>
   );
 }
+=======
+        py={4}
+        align={"center"}
+      >
+        
+          <Flex h={25} w={'100%'} alignItems={"center"} justifyContent={"space-between"}>
+            <Image
+              src={logoImg}
+              w={'200px'}
+              mt={0}
+              mb={0}
+              alt="Fox Group International"
+            />
+            <ThemeToggle />
+          </Flex>
+        
+      </Container>
+    </>
+  );
+}
+>>>>>>> 2fe92b7238b1fbb4519453d80a8b1b611e68fc28

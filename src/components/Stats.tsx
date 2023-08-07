@@ -30,6 +30,10 @@ function StatsCard(props: StatsCardProps) {
       py={"5"}
       shadow={"xl"}
       border={"1px solid"}
+<<<<<<< HEAD
+=======
+      color={"#000"}
+>>>>>>> 2fe92b7238b1fbb4519453d80a8b1b611e68fc28
       borderColor={useColorModeValue("gray.800", "gray.500")}
       rounded={"lg"}
     >
@@ -72,6 +76,10 @@ export default function BasicStatistics() {
           fontSize={{ base: "4xl", sm: "5xl", md: "5xl" }}
           py={5}
           fontWeight={"bold"}
+<<<<<<< HEAD
+=======
+          color={"#000"}
+>>>>>>> 2fe92b7238b1fbb4519453d80a8b1b611e68fc28
         >
           The Numbers
         </chakra.h1>
@@ -89,7 +97,11 @@ export default function BasicStatistics() {
         </chakra.p>
         <SimpleGrid
           columns={{ base: 1, md: 1, lg: 3 }}
+<<<<<<< HEAD
           spacing={{ base: 5, lg: 8 }}
+=======
+          spacing={{ base: 5, md: 8 }}
+>>>>>>> 2fe92b7238b1fbb4519453d80a8b1b611e68fc28
         >
           <StatsCard
             title={"Year-on-Year Financial Growth"}
